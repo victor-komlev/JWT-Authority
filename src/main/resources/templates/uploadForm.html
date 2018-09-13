@@ -1,0 +1,101 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+<table>
+    <tr>
+        <td>
+            <div>
+                <form method="POST" enctype="multipart/form-data" action="/upload-cert">
+                    <table>
+                        <tr>
+                            <td>Certificate to upload:</td>
+                            <td><input type="file" name="cert"/></td>
+                        </tr>
+                        <tr>
+                            <td>Certificate Password:</td>
+                            <td><input type="text" name="certPassword"/></td>
+                        </tr>
+                        <tr>
+                            <td>Authority Name:</td>
+                            <td><input type="text" name="authorityName"/></td>
+                        </tr>
+                        <tr>
+                            <td>Api Key:</td>
+                            <td><input type="text" name="apiKey"/></td>
+                        </tr>
+                        <tr>
+                            <td>Valid Period in minutes:</td>
+                            <td><input type="text" name="jwtValidFor"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Upload"/></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </td>
+        <td>
+            <form method="POST" enctype="form-data" action="/add-user">
+                <table>
+                    <tr>
+                        <td>User Name:</td>
+                        <td><input type="text" name="userName"/></td>
+                    </tr>
+                    <tr>
+                        <td>User Password:</td>
+                        <td><input type="text" name="userPassword"/></td>
+                    </tr>
+                    <tr>
+                        <td>User Roles (coma-separated):</td>
+                        <td><input type="text" name="userRoles"/></td>
+                    </tr>
+                    <tr>
+                        <td>User Tenant (coma-separated):</td>
+                        <td>
+                            <select class="form-control" id="dropTenant" name="dropTenant">
+                                <option th:each="tenant : ${tenants}" th:value="${tenant.id}"
+                                        th:text="${tenant.id}+' : '+${tenant.name}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Create"/></td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div>
+                <h3>Available Tenants</h3>
+            </div>
+            <div>
+                <ul>
+                    <li th:each="tenant : ${tenants}">
+                        <label th:text="${tenant}"/>
+                    </li>
+                </ul>
+            </div>
+        </td>
+        <td>
+            <div>
+                <h3>Available Users</h3>
+            </div>
+            <div>
+                <ul>
+                    <li th:each="user : ${users}">
+                        <label th:text="${user}"/>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+spring:
+  profiles.active: default
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jwt?createDatabaseIfNotExist=true
+    username: root
+    password: masterkey
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+server:
+#Server port
+  port: 8180
+logging:
+  level:
+    org.springframework.web: 'DEBUG'
+jwt:
+# API KEY to be returned as "iss" claim
+  authority: 'jwt-authority'
+# Database connection required for Spring OAuth Integration
+  jdbc:
+    url: 'jdbc:mysql://localhost:3306/jwt?createDatabaseIfNotExist=true'
+    user: 'root'
+    password: 'mysql'
+    driver: 'com.mysql.jdbc.Driver'
+#    driver: 'org.h2.Driver'
